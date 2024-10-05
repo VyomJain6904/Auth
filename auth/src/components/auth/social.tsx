@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { FaApple } from "react-icons/fa";
 
 export const Social = () => {
     return (
@@ -23,6 +24,14 @@ export const Social = () => {
                 onClick={() => {}}
             >
                 <FaGithub className="h-7 w-7"/>
+            </Button>
+            <Button
+                size="lg"
+                className="w-full"
+                variant="outline"
+                onClick={() => {}}
+            >
+                <FaApple className="h-7 w-7"/>
             </Button>
         </div>
     );

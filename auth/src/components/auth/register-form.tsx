@@ -11,8 +11,8 @@ import {
 	FormItem,
 	FormMessage,
 } from "@/components/ui/form";
-import { LoginSchema } from "../../../schemas";
-import { login } from "../../../actions/login";
+import { RegisterSchema } from "../../../schemas";
+import { register } from "../../../actions/register";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -25,28 +25,29 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-const LoginForm = () => {
+const RegisterForm = () => {
 
 	const [ isPending , startTransition ] = useTransition();
 	const [ error , setError ] = useState<string | undefined>("");
 	const [ success , setSuccess ] = useState<string | undefined>("");
 
-	const form = useForm<z.infer<typeof LoginSchema>>({
-		resolver: zodResolver(LoginSchema),
+	const form = useForm<z.infer<typeof RegisterSchema>>({
+		resolver: zodResolver(RegisterSchema),
 		defaultValues: {
 			email: "",
 			password: "",
+			name : "",
 		},
 	});
 
-    const onSubmit = (values : z.infer<typeof LoginSchema>) => {
+    const onSubmit = (values : z.infer<typeof RegisterSchema>) => {
         
 		setError("");
 		setSuccess("");
 
 		startTransition(() => {
-			login(values)
-				.then(( data ) => {
+			register(values)
+				.then((data) => {
 					setError(data.error);
 					setSuccess(data.success);
 				});
@@ -78,9 +79,9 @@ const LoginForm = () => {
 
 	return (
 		<CardWrapper
-			headerLabel="Welcome Back"
-			backButtonLabel="Don't have an Account"
-			backButtonHref="/register"
+			headerLabel="Create an Account"
+			backButtonLabel="Already have an Account"
+			backButtonHref="/login"
 			showSocial
 		>
 			<Form {...form}>
@@ -89,6 +90,27 @@ const LoginForm = () => {
 					className="space-y-6"
 				>
 					<div className="space-y-4">
+					<FormField
+							control={form.control}
+							name="name"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Name</FormLabel>
+									<FormControl>
+										<LabelInputContainer className="mb-4">
+											<Input
+												{...field}
+												disabled={isPending}
+												id="name"
+												placeholder="john doe"
+												type="name"
+											/>
+										</LabelInputContainer>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 						<FormField
 							control={form.control}
 							name="email"
@@ -139,7 +161,7 @@ const LoginForm = () => {
 						className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
 						type="submit"
 					>
-						Login &rarr;
+						Create an Account &rarr;
 						<BottomGradient />
 					</button>
 				</form>
@@ -148,4 +170,4 @@ const LoginForm = () => {
 	);
 };
 
-export default LoginForm;
+export default RegisterForm;

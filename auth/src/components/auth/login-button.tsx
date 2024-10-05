@@ -17,7 +17,7 @@ export const LoginButton = ({
     const router = useRouter();
 
     const onClick = () => {
-		router.push("/auth/login")
+		router.push("/login")
 	};
 
     if (mode === "model") {
