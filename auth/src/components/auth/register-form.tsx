@@ -1,7 +1,6 @@
 "use client";
 
 import { CardWrapper } from "@/components/auth/card-wrapper";
-import { SignUpForm } from "@/components/auth/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	Form,
@@ -11,10 +10,8 @@ import {
 	FormItem,
 	FormMessage,
 } from "@/components/ui/form";
-import { RegisterSchema } from "../../../schemas";
-import { register } from "../../../actions/register";
-
-import { Label } from "@/components/ui/label";
+import { RegisterSchema } from "@/schemas/index";
+import { register } from "@/actions/register";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { FormError } from "@/components/form-error";

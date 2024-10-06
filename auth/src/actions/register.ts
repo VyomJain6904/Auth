@@ -1,11 +1,11 @@
 "use server";
 
 import * as z from "zod";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
-import { RegisterSchema } from "../schemas";
+import { RegisterSchema } from "@/schemas";
 import { db } from "@/lib/db";
-import { getUserByEmail } from "../data/user";
+import { getUserByEmail } from "@/data/user";
 
 export const register = async ( values : z.infer<typeof RegisterSchema> ) => {
     const validatedFields = RegisterSchema.safeParse(values);
@@ -16,9 +16,9 @@ export const register = async ( values : z.infer<typeof RegisterSchema> ) => {
 
     const { email , password , name } = validatedFields.data;
 
-    const salts = await bcrypt.genSalt(10)
+    const salts = await bcrypt.genSalt(15)
     const hashedPassword = await bcrypt.hash(password , salts);
-
+ 
     const existingUser = await getUserByEmail(email);
 
     if(existingUser) {
@@ -37,3 +37,4 @@ export const register = async ( values : z.infer<typeof RegisterSchema> ) => {
 
     return { success : "User Created" };
 };
+ 

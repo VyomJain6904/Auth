@@ -1,7 +1,6 @@
 "use client";
 
 import { CardWrapper } from "@/components/auth/card-wrapper";
-import { SignUpForm } from "@/components/auth/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	Form,
@@ -11,10 +10,8 @@ import {
 	FormItem,
 	FormMessage,
 } from "@/components/ui/form";
-import { LoginSchema } from "../../../schemas";
-import { login } from "../../../actions/login";
-
-import { Label } from "@/components/ui/label";
+import { LoginSchema } from "@/schemas/index";
+import { login } from "@/actions/login";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { FormError } from "@/components/form-error";
@@ -46,10 +43,11 @@ const LoginForm = () => {
 
 		startTransition(() => {
 			login(values)
-				.then(( data ) => {
-					setError(data.error);
-					setSuccess(data.success);
-				});
+				.then((data) => {
+					console.log(data);
+					// setError(data.error);
+					// setSuccess(data.success);
+			});
 		});
     };
 
