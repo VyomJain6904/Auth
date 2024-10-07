@@ -10,6 +10,7 @@ import {
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
+
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
 
@@ -31,10 +32,9 @@ export default auth((req) => {
     if(!isLoggedIn && !isPublicRoute) {
         return Response.redirect(new URL("/login" , nextUrl));
     }
-
     return null;
 });
 
 export const config = {
-    matcher : []
+    matcher : ["/((?!api|_next/static|_next/image|favicon.ico).*)"]
 }
