@@ -62,3 +62,12 @@ model Authenticator {
  
   @@id([userId, credentialID])
 }
+
+model VerficationToken {
+  id                   String  @id @default(cuid())
+  email                String
+  token                String  @unique
+  expires              DateTime
+
+  @@unique([email , token])
+}
