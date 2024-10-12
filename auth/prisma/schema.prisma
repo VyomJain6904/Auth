@@ -63,7 +63,7 @@ model Authenticator {
   @@id([userId, credentialID])
 }
 
-model VerficationToken {
+model verificationToken {
   id                   String  @id @default(cuid())
   email                String
   token                String  @unique
