@@ -27,3 +27,9 @@ export const ResetSchema = z.object({
         message : "Email is Required"
     }),
 });
+
+export const NewPasswordSchema = z.object({
+    password : z.string().min(8 , {
+        message : "Password should be Minimum 8 Characters"
+    }).regex(/\d.*\d.*\d/).regex(/[^a-zA-Z0-9]/),
+});

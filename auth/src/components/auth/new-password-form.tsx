@@ -10,8 +10,8 @@ import {
 	FormItem,
 	FormMessage,
 } from "@/components/ui/form";
-import { ResetSchema } from "@/schemas/index";
-import { reset } from "@/actions/reset";
+import { NewPasswordSchema } from "@/schemas/index";
+import { newPassword } from "@/actions/new-password";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { FormError } from "@/components/form-error";
@@ -21,28 +21,32 @@ import React, { useState } from "react";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useSearchParams } from "next/navigation";
 
 
-const ResetForm = () => {
+const NewPasswordForm = () => {
 
+    const searchParams = useSearchParams();
 	const [ isPending , startTransition ] = useTransition();
 	const [ error , setError ] = useState<string | undefined>("");
 	const [ success , setSuccess ] = useState<string | undefined>("");
 
-	const form = useForm<z.infer<typeof ResetSchema>>({
-		resolver: zodResolver(ResetSchema),
+    const token = searchParams.get("token");
+
+	const form = useForm<z.infer<typeof NewPasswordSchema>>({
+		resolver: zodResolver(NewPasswordSchema),
 		defaultValues: {
-			email: "",
+			password: "",
 		},
 	});
 
-    const onSubmit = (values : z.infer<typeof ResetSchema>) => {
+    const onSubmit = (values : z.infer<typeof NewPasswordSchema>) => {
         
 		setError("");
 		setSuccess("");
 
 		startTransition(() => {
-			reset(values)
+			newPassword( values , token )
 				.then((data) => {
 					setError(data?.error);
 					// TODO: Add when we add 2FA
@@ -76,7 +80,7 @@ const ResetForm = () => {
 
 	return (
 		<CardWrapper
-			headerLabel="Password Assistance"
+			headerLabel="Enter a New Password"
 			backButtonLabel="Back to Login"
 			backButtonHref="/login"
 		>
@@ -88,20 +92,20 @@ const ResetForm = () => {
 					<div className="space-y-4">
 						<FormField
 							control={form.control}
-							name="email"
+							name="password"
 							render={({ field }) => (
 								<FormItem>
                                     <FormLabel>
-                                        Email
+                                        Password
                                     </FormLabel>
 									<FormControl>
 										<LabelInputContainer className="mb-4">
 											<Input
 												{...field}
 												disabled={isPending}
-												id="email"
-												placeholder="john.doe@example.com"
-												type="email"
+												id="password"
+												placeholder="**********"
+												type="password"
 											/>
 										</LabelInputContainer>
 									</FormControl>
@@ -117,7 +121,7 @@ const ResetForm = () => {
 						className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
 						type="submit"
 					>
-						Continue &rarr;
+						Reset Password &rarr;
 						<BottomGradient />
 					</button>
 				</form>
@@ -126,4 +130,4 @@ const ResetForm = () => {
 	);
 };
 
-export default ResetForm;
+export default NewPasswordForm;
