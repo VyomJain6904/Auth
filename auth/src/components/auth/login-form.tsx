@@ -25,14 +25,17 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Link from "next/link";
 
-
 const LoginForm = () => {
-
 	const searchParams = useSearchParams();
-	const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email already used" : "";
-	const [ isPending , startTransition ] = useTransition();
-	const [ error , setError ] = useState<string | undefined>("");
-	const [ success , setSuccess ] = useState<string | undefined>("");
+	const urlError =
+		searchParams.get("error") === "OAuthAccountNotLinked"
+			? "Email already used"
+			: "";
+
+	const [showTwoFactor, setshowTwoFactor] = useState(false);
+	const [isPending, startTransition] = useTransition();
+	const [error, setError] = useState<string | undefined>("");
+	const [success, setSuccess] = useState<string | undefined>("");
 
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
@@ -42,20 +45,30 @@ const LoginForm = () => {
 		},
 	});
 
-    const onSubmit = (values : z.infer<typeof LoginSchema>) => {
-        
+	const onSubmit = (values: z.infer<typeof LoginSchema>) => {
 		setError("");
 		setSuccess("");
 
 		startTransition(() => {
 			login(values)
 				.then((data) => {
-					setError(data?.error);
-					// TODO: Add when we add 2FA
-					setSuccess(data?.success);
-			});
+					if (data?.error) {
+						form.reset();
+						setError(data.error);
+					}
+
+					if (data?.success) {
+						form.reset();
+						setSuccess(data.success);
+					}
+
+					if (data?.twoFactor) {
+						setshowTwoFactor(true);
+					}
+				})
+				.catch(() => setError("Something went Wrong"));
 		});
-    };
+	};
 
 	const LabelInputContainer = ({
 		children,
@@ -93,20 +106,21 @@ const LoginForm = () => {
 					className="space-y-6"
 				>
 					<div className="space-y-4">
-						<FormField
+
+						{showTwoFactor && (
+							<FormField
 							control={form.control}
-							name="email"
+							name="code"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Email</FormLabel>
+									<FormLabel>2FA Code</FormLabel>
 									<FormControl>
 										<LabelInputContainer className="mb-4">
 											<Input
 												{...field}
 												disabled={isPending}
-												id="email"
-												placeholder="john.doe@example.com"
-												type="email"
+												id="code"
+												placeholder="******"
 											/>
 										</LabelInputContainer>
 									</FormControl>
@@ -114,48 +128,73 @@ const LoginForm = () => {
 								</FormItem>
 							)}
 						/>
-						<FormField
-							control={form.control}
-							name="password"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Password</FormLabel>
-									<FormControl>
-										<LabelInputContainer className="mb-4">
-											<Input
-												{...field}
-												disabled={isPending}
-												id="password"
-												placeholder="**********"
-												type="password"
-											/>
-										</LabelInputContainer>
-									</FormControl>
-									<Button
-										size="sm"
-										variant="link"
-										asChild
-										className="px-0 font-normal"
-									>
-										<Link
-											href="/reset"
-										>
-											Forget Password ?
-										</Link>
-									</Button>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
+						)}
+
+						{!showTwoFactor && (
+							<>
+								<FormField
+									control={form.control}
+									name="email"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Email</FormLabel>
+											<FormControl>
+												<LabelInputContainer className="mb-4">
+													<Input
+														{...field}
+														disabled={isPending}
+														id="email"
+														placeholder="john.doe@example.com"
+														type="email"
+													/>
+												</LabelInputContainer>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="password"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Password</FormLabel>
+											<FormControl>
+												<LabelInputContainer className="mb-4">
+													<Input
+														{...field}
+														disabled={isPending}
+														id="password"
+														placeholder="**********"
+														type="password"
+													/>
+												</LabelInputContainer>
+											</FormControl>
+											<Button
+												size="sm"
+												variant="link"
+												asChild
+												className="px-0 font-normal"
+											>
+												<Link href="/reset">
+													Forget Password ?
+												</Link>
+											</Button>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</>
+						)}
 					</div>
-                    <FormError message={error || urlError} />
-                    <FormSuccess message={success} />
+					<FormError message={error || urlError} />
+					<FormSuccess message={success} />
 					<button
 						disabled={isPending}
 						className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
 						type="submit"
 					>
-						Login &rarr;
+						{showTwoFactor ? "Confirm" : "Login &rarr"}
 						<BottomGradient />
 					</button>
 				</form>

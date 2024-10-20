@@ -4,6 +4,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db";
 import authConfig from "@/auth.config";
 import { getUserById } from "@/data/user";
+import { getTwoFactorCnfByUserID } from "@/data/two-factor-cnf";
 
 export const {
     handlers : { GET , POST },
@@ -45,7 +46,20 @@ export const {
             if ( !existingUser?.emailVerified ) 
                 return false;
 
-            // TODO: Add 2FA Check
+            if (existingUser.isTwoFactorEnabled) {
+                const twoFactorCnf = await getTwoFactorCnfByUserID(existingUser.id);
+
+                if (!twoFactorCnf) {
+                    return false;
+                }
+
+                await db.twoFactorCnf.delete({
+                    where : {
+                        id : twoFactorCnf.id
+                    }
+                });
+            }
+
             return true;
         },
 
