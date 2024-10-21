@@ -106,28 +106,27 @@ const LoginForm = () => {
 					className="space-y-6"
 				>
 					<div className="space-y-4">
-
 						{showTwoFactor && (
 							<FormField
-							control={form.control}
-							name="code"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>2FA Code</FormLabel>
-									<FormControl>
-										<LabelInputContainer className="mb-4">
-											<Input
-												{...field}
-												disabled={isPending}
-												id="code"
-												placeholder="******"
-											/>
-										</LabelInputContainer>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
+								control={form.control}
+								name="code"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>2FA Code</FormLabel>
+										<FormControl>
+											<LabelInputContainer className="mb-4">
+												<Input
+													{...field}
+													disabled={isPending}
+													id="code"
+													placeholder="******"
+												/>
+											</LabelInputContainer>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
 						)}
 
 						{!showTwoFactor && (
