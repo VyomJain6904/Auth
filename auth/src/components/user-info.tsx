@@ -37,6 +37,14 @@ export const UserInfo = ({ user, label }: UserInfoProps) => {
 				</div>
 
 				<div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+					<p className="text-sm font-medium">ROLE :</p>
+
+					<p className="text-sm max-w-[300px] font-mono p-1 bg-slate-100 rounded-xl">
+						{user?.role}
+					</p>
+				</div>
+
+				<div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
 					<p className="text-sm font-medium">2FA :</p>
 					<Badge 
                         variant={user ?.isTwoFactorEnabled ? "success" : "destructive"}
