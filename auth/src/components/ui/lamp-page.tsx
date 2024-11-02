@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import { LampContainer } from "@/components/ui/lamp";
 import { LoginButton } from "@/components/auth/login-button";
-import { Button } from "@/components/ui/button";
+import { Border } from "@/components/auth/button";
 
 export function LampPage() {
 	return (
@@ -28,9 +28,7 @@ export function LampPage() {
 					</p>
 					<div>
 						<LoginButton>
-							<Button variant="secondary" size="lg">
-								Sign In
-							</Button>
+							<Border />
 						</LoginButton>
 					</div>
 				</div>

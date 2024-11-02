@@ -1,12 +1,8 @@
-import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<BackgroundBeamsWithCollision>
-			<div className="h-full w-full flex items-center justify-center">
+			<div className="h-screen bg-gradient-to-r from-slate-950 to-gray-800 relative flex items-center w-full justify-center">
 				{children}
 			</div>
-		</BackgroundBeamsWithCollision>
 	);
 };
 
