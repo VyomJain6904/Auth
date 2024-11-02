@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VD-Auth
 
-## Getting Started
+**VD-Auth** is a robust, production-grade authentication platform built with modern web technologies. It offers secure user authentication, account management, and session handling, designed for scalability and ease of use.
 
-First, run the development server:
+## 🌐 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Explore the live version of the project: [VD-Auth](https://vd-auth.com)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![Website Screenshot](/images/home.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Repository
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Access the source code on GitHub: [VD-Auth](https://github.com/VyomOp2/Auth)
 
-## Learn More
+## 🚀 Features
 
-To learn more about Next.js, take a look at the following resources:
+- **User Registration**: Secure registration with real-time validation and email verification.
+- **User Login**: Encrypted login process with token-based session management.
+- **Forgot Password**: Password recovery using an email-based reset link.
+- **Role-Based Access**: Differentiates user access based on roles (e.g., Admin, User).
+- **Session Persistence**: Maintains session information securely across sessions.
+- **Comprehensive Security**: Implements strong encryption, hashed passwords, and CSRF protection.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Website Screenshot](/images/login.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Technologies Used
 
-## Deploy on Vercel
+- **Frontend**:
+  - **Next.js** and **TypeScript**: Enables a responsive, fast-loading, and scalable user interface.
+  - **React**: Manages dynamic UI elements and state with ease.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Backend**:
+  - **NeonDB**: A highly scalable cloud PostgreSQL solution.
+  - **Prisma**: ORM for type-safe database interaction and schema management.
+  - **PostgreSQL**: Relational database for reliable data storage and retrieval.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛡️ Security Measures
+
+- **Token-Based Authentication**: Uses JWT (JSON Web Tokens) to manage user sessions securely.
+- **Password Hashing**: Utilizes bcrypt to hash and store passwords safely.
+- **CSRF Protection**: Safeguards against cross-site request forgery attacks.
+- **Rate Limiting**: Prevents brute-force attacks on login endpoints.
+
+## 🧑‍💻 Contributions
+
+This website is fully developed and maintained by **Vyom Maloo**. For any suggestions or improvements, feel free to open an issue or submit a pull request in the GitHub repository.
+
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE), making it open-source and free to use.
+
+---
