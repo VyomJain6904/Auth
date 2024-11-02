@@ -8,7 +8,7 @@ export const getTwoFactorTokenByToken = async ( token : string ) => {
 
         return twoFactorToken;
 
-    } catch (error) {
+    } catch {
         return null;
     }
 }

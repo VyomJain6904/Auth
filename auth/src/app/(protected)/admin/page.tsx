@@ -3,12 +3,9 @@
 import { RoleVerify } from "@/components/auth/role-verify";
 import { FormSuccess } from "@/components/form-success";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useCurrentRole } from "@/hooks/use-current-role";
 import { UserRole } from "@prisma/client";
 
 const AdminPage = () => {
-
-    const role = useCurrentRole();
 
     return (  
         <Card className="w-[600px]">
