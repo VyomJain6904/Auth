@@ -8,7 +8,7 @@ export const getTwoFactorCnfByUserID = async ( userId : string ) => {
 
         return twoFactorCnf;
 
-    } catch (error) {
+    } catch {
             return null;
     }
 }

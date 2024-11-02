@@ -21,7 +21,7 @@ export const getTwoFactorTokenByEmail = async ( email : string ) => {
 
         return twoFactorToken;
 
-    } catch (error) {
+    } catch {
         return null;
     }
 }
