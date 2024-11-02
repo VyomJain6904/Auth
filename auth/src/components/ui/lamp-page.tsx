@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 
 import { LampContainer } from "@/components/ui/lamp";
 import { LoginButton } from "@/components/auth/login-button";
-import { Border } from "@/components/auth/button";
+import { Button } from "@/components/ui/button";
 
 export function LampPage() {
+	
 	return (
 		<LampContainer>
 			<motion.h1
@@ -27,8 +28,10 @@ export function LampPage() {
 						A Simple Authentication Service
 					</p>
 					<div>
-						<LoginButton>
-							<Border />
+						<LoginButton mode="modal">
+							<Button variant="secondary" size="lg">
+								Sign In
+							</Button>
 						</LoginButton>
 					</div>
 				</div>
