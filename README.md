@@ -45,6 +45,11 @@
 
 This website is fully developed and maintained by **Vyom Maloo**. For any suggestions or improvements, feel free to open an issue or submit a pull request in the GitHub repository.
 
+## LinkedIn Profile
+```javascript
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="vyom-jain" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/vyom-jain?trk=profile-badge">vyom </a></div>
+```     
 ## 📄 License
 
 This project is licensed under the [MIT License](./LICENSE), making it open-source and free to use.
