@@ -12,8 +12,7 @@ import {
 } from "@/components/ui/form";
 import { LoginSchema } from "@/schemas/index";
 import { login } from "@/actions/login";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+import { InputCustom } from "@/components/ui/input";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { Button } from "@/components/ui/button";
@@ -71,20 +70,6 @@ const LoginForm = () => {
 		});
 	};
 
-	const LabelInputContainer = ({
-		children,
-		className,
-	}: {
-		children: React.ReactNode;
-		className?: string;
-	}) => {
-		return (
-			<div className={cn("flex flex-col space-y-2 w-full", className)}>
-				{children}
-			</div>
-		);
-	};
-
 	const BottomGradient = () => {
 		return (
 			<>
@@ -115,14 +100,12 @@ const LoginForm = () => {
 									<FormItem>
 										<FormLabel>2FA Code</FormLabel>
 										<FormControl>
-											<LabelInputContainer className="mb-4">
-												<Input
+												<InputCustom
 													{...field}
 													disabled={isPending}
 													id="code"
 													placeholder="******"
 												/>
-											</LabelInputContainer>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -139,15 +122,13 @@ const LoginForm = () => {
 										<FormItem>
 											<FormLabel>Email</FormLabel>
 											<FormControl>
-												<LabelInputContainer className="mb-4">
-													<Input
+													<InputCustom
 														{...field}
 														disabled={isPending}
 														id="email"
 														placeholder="john.doe@example.com"
 														type="email"
 													/>
-												</LabelInputContainer>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -160,15 +141,13 @@ const LoginForm = () => {
 										<FormItem>
 											<FormLabel>Password</FormLabel>
 											<FormControl>
-												<LabelInputContainer className="mb-4">
-													<Input
+													<InputCustom
 														{...field}
 														disabled={isPending}
 														id="password"
 														placeholder="**********"
 														type="password"
 													/>
-												</LabelInputContainer>
 											</FormControl>
 											<Button
 												size="sm"

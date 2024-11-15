@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { ResetSchema } from "@/schemas/index";
 import { reset } from "@/actions/reset";
-import { Input } from "@/components/ui/input";
+import { InputCustom } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
@@ -51,7 +51,7 @@ const ResetForm = () => {
 		});
     };
 
-	const LabelInputContainer = ({
+	const  = ({
 		children,
 		className,
 	}: {
@@ -95,15 +95,15 @@ const ResetForm = () => {
                                         Email
                                     </FormLabel>
 									<FormControl>
-										<LabelInputContainer className="mb-4">
-											<Input
+										< className="mb-4">
+											<InputCustom
 												{...field}
 												disabled={isPending}
 												id="email"
 												placeholder="john.doe@example.com"
 												type="email"
 											/>
-										</LabelInputContainer>
+										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>

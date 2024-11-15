@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { RegisterSchema } from "@/schemas/index";
 import { register } from "@/actions/register";
-import { Input } from "@/components/ui/input";
+import { InputCustom } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
@@ -51,7 +51,7 @@ const RegisterForm = () => {
 		});
     };
 
-	const LabelInputContainer = ({
+	const  = ({
 		children,
 		className,
 	}: {
@@ -94,15 +94,15 @@ const RegisterForm = () => {
 								<FormItem>
 									<FormLabel>Name</FormLabel>
 									<FormControl>
-										<LabelInputContainer className="mb-4">
-											<Input
+										< className="mb-4">
+											<InputCustom
 												{...field}
 												disabled={isPending}
 												id="name"
 												placeholder="john doe"
 												type="name"
 											/>
-										</LabelInputContainer>
+										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -115,15 +115,15 @@ const RegisterForm = () => {
 								<FormItem>
 									<FormLabel>Email</FormLabel>
 									<FormControl>
-										<LabelInputContainer className="mb-4">
-											<Input
+										< className="mb-4">
+											<InputCustom
 												{...field}
 												disabled={isPending}
 												id="email"
 												placeholder="john.doe@example.com"
 												type="email"
 											/>
-										</LabelInputContainer>
+										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -136,15 +136,15 @@ const RegisterForm = () => {
 								<FormItem>
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										<LabelInputContainer className="mb-4">
-											<Input
+										< className="mb-4">
+											<InputCustom
 												{...field}
 												disabled={isPending}
 												id="password"
 												placeholder="**********"
 												type="password"
 											/>
-										</LabelInputContainer>
+										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>

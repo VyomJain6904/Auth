@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { NewPasswordSchema } from "@/schemas/index";
 import { newPassword } from "@/actions/new-password";
-import { Input } from "@/components/ui/input";
+import { InputCustom } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
@@ -55,7 +55,7 @@ const NewPasswordForm = () => {
 		});
     };
 
-	const LabelInputContainer = ({
+	const  = ({
 		children,
 		className,
 	}: {
@@ -99,15 +99,15 @@ const NewPasswordForm = () => {
                                         Password
                                     </FormLabel>
 									<FormControl>
-										<LabelInputContainer className="mb-4">
-											<Input
+										< className="mb-4">
+											<InputCustom
 												{...field}
 												disabled={isPending}
 												id="password"
 												placeholder="**********"
 												type="password"
 											/>
-										</LabelInputContainer>
+										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>

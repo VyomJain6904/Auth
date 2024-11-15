@@ -15,7 +15,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { SettingsSchema } from "@/schemas";
-import { Input } from "@/components/ui/input";
+import { InputCustom } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { settings } from "@/actions/settings";
@@ -88,7 +88,7 @@ const SettingsPage = () => {
 									<FormItem>
 										<FormLabel>Name</FormLabel>
 										<FormControl>
-											<Input
+											<InputCustom
 												{...field}
 												placeholder="Update Name"
 												disabled={isPending}
@@ -107,7 +107,7 @@ const SettingsPage = () => {
 											<FormItem>
 												<FormLabel>Email</FormLabel>
 												<FormControl>
-													<Input
+													<InputCustom
 														{...field}
 														placeholder="Update Email"
 														type="email"
@@ -125,7 +125,7 @@ const SettingsPage = () => {
 											<FormItem>
 												<FormLabel>Current Password</FormLabel>
 												<FormControl>
-													<Input
+													<InputCustom
 														{...field}
 														placeholder="********"
 														type="password"
@@ -145,7 +145,7 @@ const SettingsPage = () => {
 													New Password
 												</FormLabel>
 												<FormControl>
-													<Input
+													<InputCustom
 														{...field}
 														placeholder="********"
 														type="newPassword"
