@@ -54,7 +54,7 @@ export const RegisterSchema = z.object({
 	password: z
 		.string()
 		.min(8, {
-			message: "Password should be Minimum 8 Characters",
+			message: "Password : 1 Special Char and Min 3 Number , Min Length 8 Char",
 		})
 		.regex(/\d.*\d.*\d/)
 		.regex(/[^a-zA-Z0-9]/),
@@ -73,7 +73,7 @@ export const NewPasswordSchema = z.object({
 	password: z
 		.string()
 		.min(8, {
-			message: "Password should be Minimum 8 Characters",
+			message: "Password : 1 Special Char and Min 3 Number , Min Length 8 Char",
 		})
 		.regex(/\d.*\d.*\d/)
 		.regex(/[^a-zA-Z0-9]/),

@@ -7,7 +7,7 @@ import { AuthError } from "next-auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { generateverificationToken } from "@/lib/token";
 import { getUserByEmail } from "@/data/user";
-import { sendverificationEmail } from "@/lib/mail";
+import { sendVerificationEmail } from "@/lib/mail";
 import { generateTwoFactorToken } from "@/lib/token";
 import { sendTwoFactorTokenMail } from "@/lib/mail";
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
@@ -31,7 +31,7 @@ export const login = async ( values : z.infer<typeof LoginSchema> , callBackUrl 
     if ( !existingUser.emailVerified ) {
         const verificationToken = await generateverificationToken( existingUser.email );
 
-        await sendverificationEmail(
+        await sendVerificationEmail(
             verificationToken.email,
             verificationToken.token,
         );

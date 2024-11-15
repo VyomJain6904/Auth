@@ -8,7 +8,7 @@ import { SettingsSchema } from "@/schemas";
 import { getUserByEmail, getUserById } from "@/data/user";
 import { currentUser } from "@/lib/auth";
 import { generateverificationToken } from "@/lib/token";
-import { sendverificationEmail } from "@/lib/mail";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export const settings = async (values: z.infer<typeof SettingsSchema>) => {
 	const user = await currentUser();
@@ -35,7 +35,7 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
 		}
 
 		const verificationToken = await generateverificationToken(values.email);
-		await sendverificationEmail(
+		await sendVerificationEmail(
 			verificationToken.email,
 			verificationToken.token
 		);

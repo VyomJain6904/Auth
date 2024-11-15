@@ -39,7 +39,7 @@ export const {
 
             const existingUser = await getUserById(user.id as string);
             
-            // Prevent SIgnIN without Email verification
+            // Prevent SignIN without Email verification
             if ( !existingUser?.emailVerified ) 
                 return false;
 
