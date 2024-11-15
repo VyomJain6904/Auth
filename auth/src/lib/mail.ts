@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const domain = process.env.NEXT_PUBLIC_APP_URL || "https://vd-auth.com";
+const domain = "https://vd-auth.com";
 
 const emailTemplate = (customMessage: string, actionLink: string, actionText: string) => `
 <!DOCTYPE html>
@@ -63,6 +63,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   const confirmLink = `${domain}/new-verification?token=${token}`;
   const customMessage = "Click the button below to confirm your Email address.";
   const htmlContent = emailTemplate(customMessage, confirmLink, "Confirm Email");
+  console.log("Domain : ", domain);
 
   await resend.emails.send({
     from: "onboarding@resend.dev",
