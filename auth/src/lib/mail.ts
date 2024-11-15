@@ -63,7 +63,6 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   const confirmLink = `${domain}/new-verification?token=${token}`;
   const customMessage = "Click the button below to confirm your Email address.";
   const htmlContent = emailTemplate(customMessage, confirmLink, "Confirm Email");
-  console.log("Domain : ", domain);
 
   await resend.emails.send({
     from: "onboarding@resend.dev",
