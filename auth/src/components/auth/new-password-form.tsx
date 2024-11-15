@@ -15,7 +15,6 @@ import { newPassword } from "@/actions/new-password";
 import { InputCustom } from "@/components/ui/input";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
-
 import React, { useState } from "react";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";

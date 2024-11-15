@@ -13,7 +13,6 @@ import {
 import { RegisterSchema } from "@/schemas/index";
 import { register } from "@/actions/register";
 import { InputCustom } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 

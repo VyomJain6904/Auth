@@ -14,7 +14,7 @@ const LinkedInBadge = () => {
     return (
         <div className="group fixed top-4 right-4 z-50">
             {/* LinkedIn Icon */}
-            <FaLinkedin className="text-blue-600 text-3xl cursor-pointer transition-opacity duration-300 group-hover:opacity-0" />
+            <FaLinkedin className="text-blue-600 text-4xl cursor-pointer transition-opacity duration-300 group-hover:opacity-0" />
 
             {/* LinkedIn Badge */}
             <div
