@@ -51,20 +51,6 @@ const RegisterForm = () => {
 		});
     };
 
-	const  = ({
-		children,
-		className,
-	}: {
-		children: React.ReactNode;
-		className?: string;
-	}) => {
-		return (
-			<div className={cn("flex flex-col space-y-2 w-full", className)}>
-				{children}
-			</div>
-		);
-	};
-
 	const BottomGradient = () => {
 		return (
 			<>
@@ -94,7 +80,6 @@ const RegisterForm = () => {
 								<FormItem>
 									<FormLabel>Name</FormLabel>
 									<FormControl>
-										< className="mb-4">
 											<InputCustom
 												{...field}
 												disabled={isPending}
@@ -102,7 +87,6 @@ const RegisterForm = () => {
 												placeholder="john doe"
 												type="name"
 											/>
-										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -115,7 +99,6 @@ const RegisterForm = () => {
 								<FormItem>
 									<FormLabel>Email</FormLabel>
 									<FormControl>
-										< className="mb-4">
 											<InputCustom
 												{...field}
 												disabled={isPending}
@@ -123,7 +106,6 @@ const RegisterForm = () => {
 												placeholder="john.doe@example.com"
 												type="email"
 											/>
-										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -136,7 +118,6 @@ const RegisterForm = () => {
 								<FormItem>
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										< className="mb-4">
 											<InputCustom
 												{...field}
 												disabled={isPending}
@@ -144,7 +125,6 @@ const RegisterForm = () => {
 												placeholder="**********"
 												type="password"
 											/>
-										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>

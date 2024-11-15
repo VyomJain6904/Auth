@@ -51,20 +51,6 @@ const ResetForm = () => {
 		});
     };
 
-	const  = ({
-		children,
-		className,
-	}: {
-		children: React.ReactNode;
-		className?: string;
-	}) => {
-		return (
-			<div className={cn("flex flex-col space-y-2 w-full", className)}>
-				{children}
-			</div>
-		);
-	};
-
 	const BottomGradient = () => {
 		return (
 			<>
@@ -95,7 +81,6 @@ const ResetForm = () => {
                                         Email
                                     </FormLabel>
 									<FormControl>
-										< className="mb-4">
 											<InputCustom
 												{...field}
 												disabled={isPending}
@@ -103,7 +88,6 @@ const ResetForm = () => {
 												placeholder="john.doe@example.com"
 												type="email"
 											/>
-										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>

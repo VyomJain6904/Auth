@@ -13,7 +13,6 @@ import {
 import { NewPasswordSchema } from "@/schemas/index";
 import { newPassword } from "@/actions/new-password";
 import { InputCustom } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 
@@ -55,20 +54,6 @@ const NewPasswordForm = () => {
 		});
     };
 
-	const  = ({
-		children,
-		className,
-	}: {
-		children: React.ReactNode;
-		className?: string;
-	}) => {
-		return (
-			<div className={cn("flex flex-col space-y-2 w-full", className)}>
-				{children}
-			</div>
-		);
-	};
-
 	const BottomGradient = () => {
 		return (
 			<>
@@ -99,7 +84,6 @@ const NewPasswordForm = () => {
                                         Password
                                     </FormLabel>
 									<FormControl>
-										< className="mb-4">
 											<InputCustom
 												{...field}
 												disabled={isPending}
@@ -107,7 +91,6 @@ const NewPasswordForm = () => {
 												placeholder="**********"
 												type="password"
 											/>
-										</>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
