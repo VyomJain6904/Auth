@@ -1,20 +1,11 @@
-<<<<<<< HEAD
-# Auth
-=======
 # Auth🔐
->>>>>>> 0b84f8ab76f7755d993c76008004ade1423548bc
 
 **Auth** is a robust, production-grade authentication platform built with modern web technologies. It offers secure user authentication, account management, and session handling, designed for scalability and ease of use.
 
 ## 🌐 Live Demo
 
-<<<<<<< HEAD
-## 🎥 Video Demo
-
 ![Auth in Action](/images/Auth.gif)
 
-=======
->>>>>>> 0b84f8ab76f7755d993c76008004ade1423548bc
 ### Explore the live version of the project: [Auth](https://vd-auth.com)
 
 ![Website Screenshot](/images/home.png)
