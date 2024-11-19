@@ -1,16 +1,20 @@
-# VD-Auth
+# Auth
 
-**VD-Auth** is a robust, production-grade authentication platform built with modern web technologies. It offers secure user authentication, account management, and session handling, designed for scalability and ease of use.
+**Auth** is a robust, production-grade authentication platform built with modern web technologies. It offers secure user authentication, account management, and session handling, designed for scalability and ease of use.
 
 ## 🌐 Live Demo
 
-### Explore the live version of the project: [VD-Auth](https://vd-auth.com)
+## 🎥 Video Demo
+
+![Auth in Action](/images/Auth.gif)
+
+### Explore the live version of the project: [Auth](https://vd-auth.com)
 
 ![Website Screenshot](/images/home.png)
 
 ## 📂 Repository
 
-### Access the source code on GitHub: [VD-Auth](https://github.com/VyomOp2/Auth)
+### Access the source code on GitHub: [Auth](https://github.com/VyomOp2/Auth)
 
 ## 🚀 Features
 
