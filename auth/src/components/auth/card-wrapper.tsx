@@ -44,6 +44,9 @@ export const CardWrapper = ({
                         href={backButtonHref}
                     />
                 </CardFooter>
+                <p className="text-center text-sm text-muted-foreground font-sans text-black pt-0 pb-5">
+                    Secured by Auth🔐
+                </p>
             </Card>
         );
     };
