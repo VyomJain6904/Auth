@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 
 
-export const nextConfig = {
+const nextConfig = {
     reactStrictMode: true,
 };
 
 module.exports = {
+    ...nextConfig,
     async headers() {
         return [
             {
@@ -46,4 +47,4 @@ module.exports = {
             },
         ]
     },
-}
+};
