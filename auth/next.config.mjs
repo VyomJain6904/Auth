@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 
 
-const nextConfig = {
+export const nextConfig = {
     reactStrictMode: true,
 };
 
-module.exports = {
+exports = {
     ...nextConfig,
     async headers() {
         return [
@@ -25,7 +25,6 @@ module.exports = {
                         // X-Strict-Transport-Security ( Max Age 2 Years )
                         key: 'Strict-Transport-Security',
                         value: 'max-age=63072000; includeSubDomains; preload',
-
                     },
                     {
                         // X-Frame-Options
