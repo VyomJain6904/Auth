@@ -1,5 +1,5 @@
 {
-  "name": "vd_auth",
+  "name": "vauth",
   "version": "1.0.2",
   "private": false,
   "scripts": {
@@ -10,7 +10,9 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@auth/core": "^0.37.4",
     "@auth/prisma-adapter": "^2.6.0",
+    "@auth/upstash-redis-adapter": "^2.7.4",
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.20.0",
     "@radix-ui/react-avatar": "^1.1.1",
@@ -25,6 +27,8 @@
     "@tabler/icons-react": "^3.19.0",
     "@types/ioredis": "^4.28.10",
     "@types/three": "^0.169.0",
+    "@upstash/ratelimit": "^2.0.5",
+    "@upstash/redis": "^1.34.3",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
@@ -33,6 +37,7 @@
     "framer-motion": "^11.11.8",
     "ioredis": "^5.4.2",
     "lucide-react": "^0.447.0",
+    "nanoid": "^5.0.9",
     "next": "14.2.14",
     "next-auth": "^5.0.0-beta.22",
     "react": "^18",
