@@ -1,6 +1,6 @@
-# VD-Auth
+# Auth
 
-**VD-Auth** is a robust, production-grade authentication platform built with modern web technologies. It offers secure user authentication, account management, and session handling, designed for scalability and ease of use.
+**Auth** is a robust, production-grade authentication platform built with modern web technologies. It offers secure user authentication, account management, and session handling, designed for scalability and ease of use.
 
 ## 🌐 Live Demo
 
