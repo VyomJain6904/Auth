@@ -20,6 +20,18 @@ export const {
         error : "/error"
     },
 
+    cookies: {
+        sessionToken: {
+            name: `next-auth.session-token`,
+            options: {
+                httpOnly: true,       // Prevents client-side access (XSS protection)
+                secure: process.env.NODE_ENV === "production", // Only use Secure in production
+                sameSite: "strict",   // Blocks CSRF attacks
+                path: "/",            // Available across the entire site
+            },
+        },
+    },
+
     events : {
         async linkAccount ({ user }) {
             await db.user.update ({

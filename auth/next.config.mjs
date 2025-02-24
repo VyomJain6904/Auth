@@ -17,7 +17,7 @@ const headers = async () => [
             },
             {
                 key: 'X-Frame-Options',
-                value: 'SAMEORIGIN',
+                value: 'Deny',
             },
             {
                 key: 'X-Content-Type-Options',
@@ -25,7 +25,24 @@ const headers = async () => [
             },
             {
                 key: 'Referrer-Policy',
-                value: 'origin-when-cross-origin',
+                value: 'strict-origin-when-cross-origin',
+            },
+            {
+                key: 'Content-Security-Policy',
+                value: `
+                    default-src 'self';
+                    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com;
+                    style-src 'self' 'unsafe-inline';
+                    img-src 'self' data:;
+                    connect-src 'self' https://vd-auth.com https://api.vd-auth.com https://www.google-analytics.com;
+                    font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;
+                    frame-src 'self' https://www.google.com https://accounts.google.com;
+                    form-action 'self';
+                    base-uri 'self';
+                    object-src 'none';
+                    upgrade-insecure-requests;
+                    block-all-mixed-content;
+                `.replace(/\s{2,}/g, ' ').trim(),
             },
         ],
     },
