@@ -1,8 +1,10 @@
-# Auth
+# Auth🔐
 
 **Auth** is a robust, production-grade authentication platform built with modern web technologies. It offers secure user authentication, account management, and session handling, designed for scalability and ease of use.
 
 ## 🌐 Live Demo
+
+![Auth in Action](/images/Auth.gif)
 
 ### Explore the live version of the project: [Auth](https://vd-auth.com)
 
