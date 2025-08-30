@@ -14,94 +14,100 @@ import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 import { db } from "@/lib/db";
 import { getTwoFactorCnfByUserID } from "@/data/two-factor-cnf";
 
-export const login = async ( values : z.infer<typeof LoginSchema> , callBackUrl ?: string | null ) => {
+export const login = async (
+    values: z.infer<typeof LoginSchema>,
+    callBackUrl?: string | null
+) => {
     const validatedFields = LoginSchema.safeParse(values);
 
-    if(!validatedFields.success) {
-        return { error : "Invalid Credentials" };
-    } 
-    const { email , password , code } = validatedFields.data;
+    if (!validatedFields.success) {
+        return { error: "Invalid Credentials" };
+    }
+    const { email, password, code } = validatedFields.data;
 
     const existingUser = await getUserByEmail(email);
 
-    if ( !existingUser || !existingUser.email || !existingUser.password ) {
-        return { error : "Email does not Exists !" };
+    if (!existingUser || !existingUser.email || !existingUser.password) {
+        return { error: "Email does not Exists !" };
     }
 
-    if ( !existingUser.emailVerified ) {
-        const verificationToken = await generateverificationToken( existingUser.email );
+    if (!existingUser.emailVerified) {
+        const verificationToken = await generateverificationToken(
+            existingUser.email
+        );
 
         await sendVerificationEmail(
             verificationToken.email,
-            verificationToken.token,
+            verificationToken.token
         );
 
-        return { success : "Confirmation Email Sent!" }
+        return { success: "Confirmation Email Sent!" };
     }
 
     if (existingUser.isTwoFactorEnabled && existingUser.email) {
-        if ( code ) {
+        if (code) {
             const twoFactorToken = await getTwoFactorTokenByEmail(
                 existingUser.email
             );
-            
-            if ( !twoFactorToken ) {
-                return { error : "Invalid Code" };
-            }
-            
-            if ( twoFactorToken.token !== code ) {
-                return { error : "Invalid Code" };
+
+            if (!twoFactorToken) {
+                return { error: "Invalid Code" };
             }
 
-            const hasExpired = new Date( twoFactorToken.expires ) < new Date(); 
+            if (twoFactorToken.token !== code) {
+                return { error: "Invalid Code" };
+            }
 
-            if ( hasExpired ) {
-                return { error : "Code Expired" };
+            const hasExpired = new Date(twoFactorToken.expires) < new Date();
+
+            if (hasExpired) {
+                return { error: "Code Expired" };
             }
 
             await db.twoFactorToken.delete({
-                where : { id : twoFactorToken.id },
+                where: { id: twoFactorToken.id },
             });
 
-            const existingCnf = await getTwoFactorCnfByUserID( existingUser.id );
+            const existingCnf = await getTwoFactorCnfByUserID(existingUser.id);
 
             if (existingCnf) {
-                await db.twoFactorCnf.delete ({
-                    where : { id : existingCnf.id }
-                })
+                await db.twoFactorCnf.delete({
+                    where: { id: existingCnf.id },
+                });
             }
 
             await db.twoFactorCnf.create({
-                data : {
-                    userId : existingUser.id,
-                }
+                data: {
+                    userId: existingUser.id,
+                },
             });
-
         } else {
-            const twoFactorToken = await generateTwoFactorToken(existingUser.email);
-    
+            const twoFactorToken = await generateTwoFactorToken(
+                existingUser.email
+            );
+
             await sendTwoFactorTokenMail(
                 twoFactorToken.email,
-                twoFactorToken.token,
+                twoFactorToken.token
             );
-    
-            return { twoFactor : true }
+
+            return { twoFactor: true };
         }
-    };
+    }
 
     try {
-        await signIn("credentials" , {
-            email ,
+        await signIn("credentials", {
+            email,
             password,
-            redirectTo : callBackUrl || DEFAULT_LOGIN_REDIRECT,
-        })
+            redirectTo: callBackUrl || DEFAULT_LOGIN_REDIRECT,
+        });
     } catch (error) {
-        if(error instanceof AuthError) {
+        if (error instanceof AuthError) {
             switch (error.type) {
-                case "CredentialsSignin" :
-                    return { error : "Invalid Credentials" }
-                default : 
-                    return { error : "Something Went Wrong" }
+                case "CredentialsSignin":
+                    return { error: "Invalid Credentials" };
+                default:
+                    return { error: "Something Went Wrong" };
             }
         }
         throw error;

@@ -1,14 +1,13 @@
 import { db } from "@/lib/db";
 
-export const getTwoFactorCnfByUserID = async ( userId : string ) => {
+export const getTwoFactorCnfByUserID = async (userId: string) => {
     try {
         const twoFactorCnf = await db.twoFactorCnf.findUnique({
-            where : { userId }
+            where: { userId },
         });
 
         return twoFactorCnf;
-
     } catch {
         return null;
     }
-}
+};

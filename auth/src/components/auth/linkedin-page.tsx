@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect } from 'react';
-import { FaLinkedin } from 'react-icons/fa';
+import React, { useEffect } from "react";
+import { FaLinkedin } from "react-icons/fa";
 
 const LinkedInBadge = () => {
     useEffect(() => {
-        const script = document.createElement('script');
-        script.src = 'https://platform.linkedin.com/badges/js/profile.js';
+        const script = document.createElement("script");
+        script.src = "https://platform.linkedin.com/badges/js/profile.js";
         script.async = true;
         script.defer = true;
         document.body.appendChild(script);
@@ -30,7 +30,7 @@ const LinkedInBadge = () => {
                     className="badge-base__link LI-simple-link"
                     href="https://in.linkedin.com/in/vyom-jain?trk=profile-badge"
                 >
-                    LinkedIn Profile : 
+                    LinkedIn Profile :
                 </a>
             </div>
         </div>

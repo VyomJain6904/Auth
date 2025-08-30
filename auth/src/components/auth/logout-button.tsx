@@ -1,8 +1,6 @@
 import { signOut } from "next-auth/react";
 
-export const LogoutButton = ({
-    children,
-} : { children ?: React.ReactNode }) => {
+export const LogoutButton = ({ children }: { children?: React.ReactNode }) => {
     const onClick = () => {
         signOut();
     };

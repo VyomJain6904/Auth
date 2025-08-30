@@ -24,7 +24,9 @@ export default auth((req) => {
 
     if (isAuthRoute) {
         if (isLoggedIn) {
-            return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+            return NextResponse.redirect(
+                new URL(DEFAULT_LOGIN_REDIRECT, nextUrl)
+            );
         }
         return; // Equivalent to returning void
     }
@@ -37,7 +39,9 @@ export default auth((req) => {
 
         const encodedCallBackUrl = encodeURIComponent(callBackUrl);
 
-        return NextResponse.redirect(new URL(`/login?callbackUrl=${encodedCallBackUrl}`, nextUrl));
+        return NextResponse.redirect(
+            new URL(`/login?callbackUrl=${encodedCallBackUrl}`, nextUrl)
+        );
     }
 
     return; // Return void by default

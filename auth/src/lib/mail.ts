@@ -4,7 +4,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const domain = "https://vd-auth.com";
 
-const emailTemplate = (customMessage: string, actionLink: string, actionText: string) => `
+const emailTemplate = (
+    customMessage: string,
+    actionLink: string,
+    actionText: string
+) => `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,39 +39,48 @@ const emailTemplate = (customMessage: string, actionLink: string, actionText: st
 `;
 
 export const sendTwoFactorTokenMail = async (email: string, token: string) => {
-  const customMessage = `Your Two-Factor Authentication Code is: <strong>${token}</strong>`;
-  const htmlContent = emailTemplate(customMessage, "", "Use Your Code");
+    const customMessage = `Your Two-Factor Authentication Code is: <strong>${token}</strong>`;
+    const htmlContent = emailTemplate(customMessage, "", "Use Your Code");
 
-  await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: email,
-    subject: "Two-Factor Authentication Token",
-    html: htmlContent,
-  });
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Two-Factor Authentication Token",
+        html: htmlContent,
+    });
 };
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-  const resetLink = `${domain}/new-password?token=${token}`;
-  const customMessage = "Click the button below to reset your Password.";
-  const htmlContent = emailTemplate(customMessage, resetLink, "Reset Password");
+    const resetLink = `${domain}/new-password?token=${token}`;
+    const customMessage = "Click the button below to reset your Password.";
+    const htmlContent = emailTemplate(
+        customMessage,
+        resetLink,
+        "Reset Password"
+    );
 
-  await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: email,
-    subject: "Reset Your Password",
-    html: htmlContent,
-  });
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Reset Your Password",
+        html: htmlContent,
+    });
 };
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `${domain}/new-verification?token=${token}`;
-  const customMessage = "Click the button below to confirm your Email address.";
-  const htmlContent = emailTemplate(customMessage, confirmLink, "Confirm Email");
+    const confirmLink = `${domain}/new-verification?token=${token}`;
+    const customMessage =
+        "Click the button below to confirm your Email address.";
+    const htmlContent = emailTemplate(
+        customMessage,
+        confirmLink,
+        "Confirm Email"
+    );
 
-  await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: email,
-    subject: "Confirm Your Email",
-    html: htmlContent,
-  });
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Confirm Your Email",
+        html: htmlContent,
+    });
 };

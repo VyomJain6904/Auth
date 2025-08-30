@@ -6,38 +6,38 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import LoginForm from "@/components/auth/login-form";
 
 interface LoginButtonProps {
-	children: React.ReactNode;
-	mode?: "modal" | "redirect";
-	asChild?: boolean;
+    children: React.ReactNode;
+    mode?: "modal" | "redirect";
+    asChild?: boolean;
 }
 
 export const LoginButton = ({
-	children,
-	mode = "redirect",
-	asChild,
+    children,
+    mode = "redirect",
+    asChild,
 }: LoginButtonProps) => {
-	const router = useRouter();
+    const router = useRouter();
 
-	const onClick = () => {
-		router.push("/login");
-	};
+    const onClick = () => {
+        router.push("/login");
+    };
 
-	if (mode === "modal") {
-		return (
-			<Dialog>
-				<DialogTrigger asChild={asChild}>
-					{ children }
-					<DialogContent className="p-0 w-auto bg-transparent border-none">
-						<LoginForm />
-					</DialogContent>
-				</DialogTrigger>
-			</Dialog>
-		);
-	}
+    if (mode === "modal") {
+        return (
+            <Dialog>
+                <DialogTrigger asChild={asChild}>
+                    {children}
+                    <DialogContent className="p-0 w-auto bg-transparent border-none">
+                        <LoginForm />
+                    </DialogContent>
+                </DialogTrigger>
+            </Dialog>
+        );
+    }
 
-	return (
-		<span onClick={onClick} className="cursor-pointer">
-			{children}
-		</span>
-	);
+    return (
+        <span onClick={onClick} className="cursor-pointer">
+            {children}
+        </span>
+    );
 };

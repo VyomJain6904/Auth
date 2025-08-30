@@ -6,22 +6,20 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 
 import { useSearchParams } from "next/navigation";
-import { BeatLoader } from "react-spinners"
-import { useCallback , useEffect , useState } from "react";
+import { BeatLoader } from "react-spinners";
+import { useCallback, useEffect, useState } from "react";
 
 export const NewverificationForm = () => {
-
-    const [ error , setError ] = useState<string | undefined>();
-    const [ success , setSuccess ] = useState<string | undefined>();
+    const [error, setError] = useState<string | undefined>();
+    const [success, setSuccess] = useState<string | undefined>();
 
     const searchParams = useSearchParams();
     const token = searchParams.get("token");
 
     const onSubmit = useCallback(() => {
+        if (success || error) return;
 
-        if ( success || error ) return;
-
-        if( !token ) {
+        if (!token) {
             setError("Missing Token");
             return;
         }
@@ -33,12 +31,12 @@ export const NewverificationForm = () => {
             })
             .catch(() => {
                 setError("Something went Wrong");
-            })
-    } , [token , success , error]);
+            });
+    }, [token, success, error]);
 
-    useEffect (() => {
+    useEffect(() => {
         onSubmit();
-    } , [onSubmit]);
+    }, [onSubmit]);
 
     return (
         <CardWrapper
@@ -47,15 +45,10 @@ export const NewverificationForm = () => {
             backButtonHref="/login"
         >
             <div className="flex items-center w-full justify-center">
-                {!success && !error && (
-                    <BeatLoader />
-                )}
+                {!success && !error && <BeatLoader />}
                 <FormSuccess message={success} />
-                { !success && (
-                    <FormError message={error} />
-                )}
+                {!success && <FormError message={error} />}
             </div>
-
         </CardWrapper>
     );
 };

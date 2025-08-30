@@ -5,35 +5,35 @@ import { getUserByEmail } from "@/data/user";
 import { getverificationTokenByToken } from "@/data/verification-token";
 
 export const newVerification = async (token: string) => {
-	const existingToken = await getverificationTokenByToken(token);
+    const existingToken = await getverificationTokenByToken(token);
 
-	if (!existingToken) {
-		return { error: "Token not found" };
-	}
+    if (!existingToken) {
+        return { error: "Token not found" };
+    }
 
-	const hasExpired = new Date(existingToken.expires) < new Date();
+    const hasExpired = new Date(existingToken.expires) < new Date();
 
-	if (hasExpired) {
-		return { error: "Token has Expired" };
-	}
+    if (hasExpired) {
+        return { error: "Token has Expired" };
+    }
 
-	const existingUser = await getUserByEmail(existingToken.email);
+    const existingUser = await getUserByEmail(existingToken.email);
 
-	if (!existingUser) {
-		return { error: "Email does not Exist" };
-	}
+    if (!existingUser) {
+        return { error: "Email does not Exist" };
+    }
 
-	await db.user.update({
-		where: { id: existingUser.id },
-		data: {
-			emailVerified: new Date(),
-			email: existingToken.email,
-		},
-	});
+    await db.user.update({
+        where: { id: existingUser.id },
+        data: {
+            emailVerified: new Date(),
+            email: existingToken.email,
+        },
+    });
 
-	await db.verificationToken.delete({
-		where: { id: existingToken.id },
-	});
+    await db.verificationToken.delete({
+        where: { id: existingToken.id },
+    });
 
-	return { success : "Email Verified" };
+    return { success: "Email Verified" };
 };
